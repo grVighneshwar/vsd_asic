@@ -39,3 +39,8 @@
   ![image](https://github.com/user-attachments/assets/a26b5713-3780-44ce-8113-45b10ee3c3f3)
 
 - There are a total of 25 instructions using O1 and a total of 24 instructions using Ofast. O1 provides a balanced optimization, resulting in more instructions, whereas Ofast prioritizes faster compilation time, leading to fewer instructions.
+
+## ** Task 2**
+![image](https://github.com/user-attachments/assets/eacf00e1-9a24-4ff0-9f51-a32e5a9aa8cb)
+![image](https://github.com/user-attachments/assets/4ca1ac17-4c6f-487b-81f8-8687f0b2d562)
+![image](https://github.com/user-attachments/assets/f7fc7886-d620-4871-9fcd-b38b4d71fa1b)
