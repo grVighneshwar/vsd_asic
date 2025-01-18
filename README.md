@@ -15,7 +15,7 @@
 ![image](https://github.com/user-attachments/assets/b5cf698d-1d73-4875-adcf-bdad7a47a07d)
 - now create a object file sum.o using the command
   ```
-  riscv64-unknown-elf-gcc- -O1 -mabi=lp64 -marchrv64i -o sum.o sum.c
+   riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum.o sum.c
   ```
 - to look into the object file for instruction sets
   ```
@@ -31,7 +31,7 @@
 
 - now compile the code using the riscv compiler using ofast optimisation
 ```
-  riscv64-unknown-elf-gcc- -Ofast -mabi=lp64 -marchrv64i -o sum.o sum.c
+  riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum.o sum.c
 ```
    ![image](https://github.com/user-attachments/assets/8609ecff-5519-4fe6-a3ca-3da391c0269e)
    ![image](https://github.com/user-attachments/assets/f56ae57e-72ac-4980-90fe-fb7495f6940e)
@@ -191,6 +191,59 @@ Hardcoded Instruction: add r14, r2, r2
 Hardcoded Instruction: bne r0, r1, 20
 ![image](https://github.com/user-attachments/assets/1da33d73-7b74-4fad-9940-7fff051051e5)
 
+## **Task 4**
+write a c program to do a binary search on a sorted array
+```
+#include <stdio.h>
+
+// Function to perform binary search
+int binarySearch(int arr[], int size, int target) {
+    int low = 0;
+    int high = size - 1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2; // Avoids potential overflow
+        if (arr[mid] == target) {
+            return mid; // Target found
+        } else if (arr[mid] < target) {
+            low = mid + 1; // Search in the right half
+        } else {
+            high = mid - 1; // Search in the left half
+        }
+    }
+
+    return -1; // Target not found
+}
+
+int main() {
+    int sortedArray[] = {1, 3, 5, 7, 9, 11};
+    int size = sizeof(sortedArray) / sizeof(sortedArray[0]);
+    int target = 7;
+
+    int result = binarySearch(sortedArray, size, target);
+
+    if (result != -1) {
+        printf("Element %d found at index %d.\n", target, result);
+    } else {
+        printf("Element %d not found in the array.\n", target);
+    }
+
+    return 0;
+}
+```
+![image](https://github.com/user-attachments/assets/fd85092f-557e-45ab-a768-2eb4cc6dfcfe)
+compile using riscv compiler and create bin.o file and see the number of instructions
+![image](https://github.com/user-attachments/assets/e882e6c5-1f44-42a7-92bc-f4c9dc62cb86)
+
+now compile the c program with ricv compiler with Ofast optimisation
+![image](https://github.com/user-attachments/assets/0a7d8768-1e0a-4972-8b98-7816edd6f920)
+now create object file
+![image](https://github.com/user-attachments/assets/9e82fb65-b471-4dd6-98d2-389f53905c35)
+there are 48 instructions
+mow run the spike simulation
+![image](https://github.com/user-attachments/assets/d4879fa4-3ff2-4f32-9269-a1285c133a6b)
+We now bring the PC (program counter) to the start of the main function using the command 'until pc 0 100b0'. We then check the contents of register 'a5' before and after running the instructions. After executing the commands, we observe that the registers 'a5' is properly loaded with appropriate values.
+![image](https://github.com/user-attachments/assets/12fde7ae-913f-4d75-8ec1-9c00f1135f5c)
 
 
 
