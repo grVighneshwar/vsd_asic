@@ -44,3 +44,154 @@
 ![image](https://github.com/user-attachments/assets/eacf00e1-9a24-4ff0-9f51-a32e5a9aa8cb)
 ![image](https://github.com/user-attachments/assets/4ca1ac17-4c6f-487b-81f8-8687f0b2d562)
 ![image](https://github.com/user-attachments/assets/f7fc7886-d620-4871-9fcd-b38b4d71fa1b)
+
+## **Task 3**
+Below is a description of each instruction included in the hardcoded implementation:
+
+---
+
+### **1. add r6, r1, r2**
+- **Operation**: Performs an arithmetic addition of the values in registers `r1` and `r2`, and stores the result in register `r6`.
+- **Syntax**: `add rd, rs1, rs2`
+- **Use Case**: Commonly used for simple arithmetic operations.
+
+---
+
+### **2. sub r7, r1, r2**
+- **Operation**: Subtracts the value in register `r2` from the value in register `r1`, and stores the result in register `r7`.
+- **Syntax**: `sub rd, rs1, rs2`
+- **Use Case**: Used for subtraction operations.
+
+---
+
+### **3. and r8, r1, r3**
+- **Operation**: Performs a bitwise AND operation between the values in registers `r1` and `r3`, and stores the result in register `r8`.
+- **Syntax**: `and rd, rs1, rs2`
+- **Use Case**: Useful for masking specific bits.
+
+---
+
+### **4. or r9, r2, r5**
+- **Operation**: Performs a bitwise OR operation between the values in registers `r2` and `r5`, and stores the result in register `r9`.
+- **Syntax**: `or rd, rs1, rs2`
+- **Use Case**: Commonly used for setting specific bits in a value.
+
+---
+
+### **5. xor r10, r1, r4**
+- **Operation**: Performs a bitwise XOR operation between the values in registers `r1` and `r4`, and stores the result in register `r10`.
+- **Syntax**: `xor rd, rs1, rs2`
+- **Use Case**: Used in generating parity bits or toggling specific bits.
+
+---
+
+### **6. slt r11, r2, r4**
+- **Operation**: Sets `r11` to `1` if the value in register `r2` is less than the value in register `r4`, otherwise sets `r11` to `0`.
+- **Syntax**: `slt rd, rs1, rs2`
+- **Use Case**: Used for conditional operations and comparisons.
+
+---
+
+### **7. addi r12, r4, 5**
+- **Operation**: Adds the immediate value `5` to the value in register `r4`, and stores the result in register `r12`.
+- **Syntax**: `addi rd, rs1, imm`
+- **Use Case**: Frequently used to load small constants or perform offset calculations.
+
+---
+
+### **8. sw r3, r1, 2**
+- **Operation**: Stores the value in register `r3` into the memory location at address `r1 + 2`.
+- **Syntax**: `sw rs2, imm(rs1)`
+- **Use Case**: Used to store data in memory, such as saving temporary results or variables.
+
+---
+
+### **9. lw r13, r1, 2**
+- **Operation**: Loads a 32-bit value from the memory address `r1 + 2` into register `r13`.
+- **Syntax**: `lw rd, imm(rs1)`
+- **Use Case**: Used to retrieve data from memory into a register.
+
+---
+
+### **10. bne r0, r1, 20**
+- **Operation**: Compares the values in registers `r0` and `r1`. If they are not equal, the program counter is updated to `PC + 20`, effectively performing a branch.
+- **Syntax**: `bne rs1, rs2, offset`
+- **Use Case**: Useful for implementing loops or conditional jumps.
+
+---
+- **Instruction Categories**:
+  - **Arithmetic Operations**: `add`, `sub`, `addi`
+  - **Logical Operations**: `and`, `or`, `xor`
+  - **Comparison**: `slt`
+  - **Memory Access**: `lw`, `sw`
+  - **Control Flow**: `bne`
+- **Registers**:
+  - `rs1` and `rs2`: Source registers
+  - `rd`: Destination register
+  - `imm`: Immediate value
+  
+hardcoded all the instructions
+![image](https://github.com/user-attachments/assets/158c7635-a2c2-42a4-b958-bc71a3b3e40c)
+
+
+hardcoded add instruction updated verilog code
+```
+always @(posedge RN) begin
+    NPC <= 32'd0;
+
+    // Initialize instruction memory with the hardcoded instruction
+    MEM[0] <= 32'h02208333;  // add r6, r1, r2
+    MEM[1] <= 32'h00000000;  // NOP or empty instruction for simplicity
+    // Other instructions can follow here...
+
+    // Initialize registers for testing
+    REG[0] <= 32'h00000000;
+    REG[1] <= 32'd10;  // r1 = 10
+    REG[2] <= 32'd20;  // r2 = 20
+    REG[6] <= 32'd0;   // r6 = 0 (will hold result)
+end
+```
+![image](https://github.com/user-attachments/assets/fe12f7b0-3b11-4e6b-a2b6-8831a1e4e14b)
+hardcoded sub  r7, r1, r2
+```
+always @(posedge RN) begin
+    NPC <= 32'd0;
+
+    // Initialize instruction memory with the hardcoded instruction
+    MEM[0] <= 32'h02209380;
+    MEM[1] <= 32'h00000000;  // NOP or empty instruction for simplicity
+    // Other instructions can follow here...
+
+    // Initialize registers for testing
+    REG[0] <= 32'h00000000;
+    REG[1] <= 32'd10;  // r1 = 10
+    REG[2] <= 32'd20;  // r2 = 20
+    REG[7] <= 32'd0;   
+end
+```
+![image](https://github.com/user-attachments/assets/eaac884a-ba11-4821-86fb-0322d35ab006)
+Hardcoded Instruction: and r8, r1, r3
+![image](https://github.com/user-attachments/assets/812ab672-82bf-46d7-99f9-4a5b86636be6)
+Hardcoded Instruction: or r9, r2, r5
+![image](https://github.com/user-attachments/assets/8dcbd77f-cd14-4c78-9a9b-9d66c3093fca)
+Hardcoded Instruction: xor r10, r1, r4
+![image](https://github.com/user-attachments/assets/c075bd5e-6a05-4d01-8a8f-15439d18a251)
+Hardcoded Instruction: slt r11, r2, r4
+![image](https://github.com/user-attachments/assets/e3b27ede-cc82-4fa9-b1d7-2b81c7fe8dc3)
+Hardcoded Instruction: addi r12, r4, 5
+![image](https://github.com/user-attachments/assets/470f7f85-e2fb-4e4c-9b94-e36eb709753b)
+Hardcoded Instruction: sw r3, r1, 2
+![image](https://github.com/user-attachments/assets/7085ddf7-dd1e-42b4-8576-36b2a592e4af)
+Hardcoded Instruction: lw r13, r1, 2
+![image](https://github.com/user-attachments/assets/1192b4d4-7877-4553-a218-9a56f4a5421a)
+Hardcoded Instruction: beq r0, r0, 15
+![image](https://github.com/user-attachments/assets/5afd6ac0-3a2a-4d9f-b001-fa3560f572ab)
+Hardcoded Instruction: add r14, r2, r2
+![image](https://github.com/user-attachments/assets/61a13600-dd5c-475d-9524-b6af528d8472)
+Hardcoded Instruction: bne r0, r1, 20
+![image](https://github.com/user-attachments/assets/1da33d73-7b74-4fad-9940-7fff051051e5)
+
+
+
+
+
