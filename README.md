@@ -235,12 +235,12 @@ int main() {
 compile using riscv compiler and create bin.o file and see the number of instructions
 ![image](https://github.com/user-attachments/assets/e882e6c5-1f44-42a7-92bc-f4c9dc62cb86)
 
-now compile the c program with ricv compiler with Ofast optimisation
+now compile the c program with riscv compiler with Ofast optimisation
 ![image](https://github.com/user-attachments/assets/0a7d8768-1e0a-4972-8b98-7816edd6f920)
 now create object file
 ![image](https://github.com/user-attachments/assets/9e82fb65-b471-4dd6-98d2-389f53905c35)
-there are 48 instructions
-mow run the spike simulation
+-there are 48 instructions
+-now run the spike simulation
 ![image](https://github.com/user-attachments/assets/d4879fa4-3ff2-4f32-9269-a1285c133a6b)
 We now bring the PC (program counter) to the start of the main function using the command 'until pc 0 100b0'. We then check the contents of register 'a5' before and after running the instructions. After executing the commands, we observe that the registers 'a5' is properly loaded with appropriate values.
 ![image](https://github.com/user-attachments/assets/12fde7ae-913f-4d75-8ec1-9c00f1135f5c)
